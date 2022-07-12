@@ -25,6 +25,13 @@ client.on("messageCreate", (msg) => {
     const comando = argumentos.shift().toLowerCase();
 
     if (comando == "ping") return msg.reply("pong");
+
+    if (comando == "suma") {
+      return msg.reply(
+        `Su suma da: ${
+          parseFloat(argumentos[0]) + parseFloat(argumentos[1])
+        }`
+)}
   }
 });
 client.login(token);
