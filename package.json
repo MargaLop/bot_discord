@@ -21,8 +21,10 @@
   "dependencies": {
     "@discordjs/builders": "^0.15.0",
     "@discordjs/rest": "^0.5.0",
+    "axios": "^0.27.2",
     "discord": "^0.8.2",
     "discord-api-types": "^0.36.1",
+    "discord-rock-paper-scissor": "^1.1.1",
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1"
   },
