@@ -16,32 +16,6 @@ client.once('ready', (bot) => {
   console.log('********************************************************')
 });
 
-const embed = Object.freeze({
-exampleEmbed:(
-  temp,
-  maxTemp,
-  minTemp,
-  pressure,
-  humidity,
-  wind,
-  cloudness,
-  icon,
-  author,
-  cityName,
-  country
-) =>
-new Discord.MessageEmbed()
-  .setColor('#6DC4FF')
-  .setAuthor(`Hola, ${author}`, profile)
-  .setTitle(`Hay ${temp}\u00B0 C en ${cityName}, ${country}`)
-  .addField(`🌡 Maximas Temperaturas:`, `${maxTemp}\u00B0 Cº`, true)
-  .addField(`🌡 Minimas Temperaturas:`, `${minTemp}\u00B0 Cº`, true)
-  .addField(`💧 Humedad:`, `${humidity} %`, true)
-  .addField(`💨 Viento:`, `${wind} m/s`, true)
-  .addField(`📊 Precipitaciones:`, `${pressure} hpa`, true)
-  .addField(`⛅️ Nubes:`, `${cloudness}`, true) 
-  .setUrl(`http://openweathermap.org/img/w/${icon}.png`)
-});
 
 client.on("messageCreate", (msg) => {
   if (msg.author.bot) return;
@@ -69,21 +43,23 @@ client.on("messageCreate", (msg) => {
               let pressure = apiData.data.main.pressure;
               let cloudness = apiData.data.weather[0].description;
 
-              console.log(currentTemp)
-              console.log(maxTemp)
-              console.log(minTemp)
-              console.log(humidity)
-              console.log(wind)
-              console.log(author)
-              console.log(icon)
-              console.log(cityName)
-              console.log(country )
-              console.log(pressure)
-              console.log(cloudness)
-              msg.reply(embed.exampleEmbed(currentTemp, maxTemp, minTemp, pressure, humidity, wind, cloudness, icon, author, profile, cityName, country));
+              const embed = 
+                new Discord.MessageEmbed()
+                  .setColor('#6DC4FF')
+                  .setAuthor({ name: `Hola, ${author}`, iconURL: 'https://avatars.githubusercontent.com/u/102298045?v=4', url: 'https://discord.js.org' })
+                  .setTitle(`Hay ${currentTemp}\u00B0 C en ${cityName}, ${country}`)
+                  .addField(`🌡 Maximas Temperaturas:`, `${maxTemp}\u00B0 Cº`, true)
+                  .addField(`🌡 Minimas Temperaturas:`, `${minTemp}\u00B0 Cº`, true)
+                  .addField(`💧 Humedad:`, `${humidity} %`, true)
+                  .addField(`💨 Viento:`, `${wind} m/s`, true)
+                  .addField(`📊 Precipitaciones:`, `${pressure} hpa`, true)
+                  .addField(`⛅️ Nubes:`, `${cloudness}`, true) 
+                  .setThumbnail(`http://openweathermap.org/img/w/${icon}.png`)
+                
+              msg.channel.send({ embeds: [embed] });
             }).catch(err => {
               msg.reply("Introduce una ciudad validad")
-          })
+            })
     }
   }
 });

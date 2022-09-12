@@ -25,6 +25,7 @@
     "country-flag-emoji": "^1.0.3",
     "discord": "^0.8.2",
     "discord-api-types": "^0.36.1",
+    "discord-embed-page": "^1.0.0",
     "discord-rock-paper-scissor": "^1.1.1",
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1",
