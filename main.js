@@ -25,8 +25,10 @@ client.on("messageCreate", (msg) => {
     const comando = argumentos.shift().toLowerCase();
     const argWeather = argumentos[0]
 
-
-    if (comando == "w" || "weather") {
+    if (comando == "ayuda" || comando == "help") {
+       msg.reply('Para conocer el clima use el comando: "-w (ciudad deseada)" o "-weather (ciudad deseada)"')
+    }
+    if (comando == "w" || comando == "weather") {
       axios 
           .get(`https://api.openweathermap.org/data/2.5/weather?q=${argWeather}&units=metric&appid=${apitoken}`)
           .then(response => {
